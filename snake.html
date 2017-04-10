@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贪吃蛇</title>
+	<style type="text/css">
+		.wrap{
+			width: 500px;
+			margin:20px auto;
+			text-align: center;
+
+		}
+		table{
+			border-collapse: collapse;
+			margin: 20px auto;
+		}
+		tr{
+			height: 12px;
+		}
+		th{
+			width: 10px;
+		}
+		.score:after{
+			content:"";
+			display: block;
+			clear: both;
+		}
+		.score p{
+			float: left;
+			width: 33.3%;
+			margin:0;
+		}
+		.ipt{
+			text-align: center;
+		}
+		.normal-food{
+			background: green;
+		}
+		.magic-food{
+			background: orange;
+		}
+		.snake-header{
+			background: blue;
+		}
+		.snake-body{
+			background: #ccc;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="score">
+			<p>普通果实：<span id="normal"></span></p>
+			<p>魔力果实：<span id="magic"></span></p>
+			<p>总得分：<span id="total-score"></span></p>
+		</div>
+		<table border="1">
+			<!-- <tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr> -->
+		</table>
+		
+		<div class="ipt">
+			<select id="selectIpt">
+				<option>2*2</option>
+				<option selected="selected">20*20</option>
+				<option>25*25</option>
+			</select>
+			<button id="start">开始游戏</button>
+			<button id="pause">暂停 / 继续</button>
+			<!-- <button id="restart">重新开始</button> -->
+		</div>
+	</div>
+	
+	
+
+	<script type="text/javascript" src="./main.js"></script>
+	<script type="text/javascript" src="./commonFunctions.js"></script>
+	<script type="text/javascript" src="./board.js"></script>
+	<script type="text/javascript" src="./food.js"></script>
+	<script type="text/javascript" src="./snake.js"></script>
+	<script type="text/javascript" src="./collision.js"></script>
+	<script type="text/javascript" src="./score.js"></script>
+	<script type="text/javascript" src="./keyboard.js"></script>
+
+
+
+
+
+	
+</body>
+</html>
