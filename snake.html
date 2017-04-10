@@ -5,7 +5,6 @@
 	<title>贪吃蛇</title>
 	<style type="text/css">
 		.wrap{
-			/*width: 500px;*/
 			margin:20px auto;
 			text-align: center;
 
@@ -19,6 +18,10 @@
 		}
 		th{
 			width: 10px;
+		}
+		.score{
+			width: 350px;
+			margin:0 auto;
 		}
 		.score:after{
 			content:"";
@@ -45,10 +48,14 @@
 		.snake-body{
 			background: #ccc;
 		}
+		.red{
+			background: red;
+		}
 		
 	</style>
 </head>
 <body>
+
 	<div class="wrap">
 		<div class="score">
 			<p>普通果实：<span id="normal"></span></p>

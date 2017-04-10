@@ -1,4 +1,5 @@
 var interval;
+var gameStatus;
 document.body.onload=init;
 
 
@@ -17,10 +18,11 @@ function init(){
 
 	//开始游戏
 	start.addEventListener("click",function(){
-		if(interval){
+		if(interval||gameStatus=="pause"){
 			var msg=confirm("游戏尚未结束，是否重新开始？")
 			if(msg){
 				clearInterval(interval)
+				interval=null;
 			}else{
 				return
 			}
@@ -30,7 +32,7 @@ function init(){
 
 	// 改变棋盘大小
 	selectIpt.addEventListener("change",function(){
-		if(interval){
+		if(interval||gameStatus=="pause"){
 			var msg=confirm("游戏尚未结束，是否更换棋盘？")
 			if(msg){
 				clearInterval(interval)
@@ -40,6 +42,7 @@ function init(){
 			}
 		}
 		board.init();
+		gameStatus="end";
 	})
 }
 
@@ -82,7 +85,35 @@ function pauseOrContinue(){
 	if(interval){
 		clearInterval(interval);  //只是停止，并未清除
 		interval=null;  //必须清除，否则暂停后无法重新开启
+		gameStatus="pause";
 	}else{
 		interval=setInterval(snake.move, snake.speed)
+		gameStatus="run";
 	}
+}
+
+// var int1=setInterval(function(){
+// 	console.log(111)
+// },1000)
+// var int2=setInterval(function(){
+// 	console.log(222)
+// },1000)
+// var int3=setTimeout(function(){
+// 	console.log(333)
+// },1000)
+
+// console.log(interval, int1 , int2,int3)
+for(var i=0; i<2; i++){
+
+	var int1=setTimeout(clock1,1000)
+	var int2=setTimeout(clock2,1000)
+
+}
+function clock1(){
+	console.log(111)
+	int1=setTimeout(clock1,1000)
+}
+function clock2(){
+	console.log(222)
+	int2=setTimeout(clock2,1000)
 }
