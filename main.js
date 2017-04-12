@@ -42,6 +42,7 @@ function init(){
 				return
 			}
 		}
+		board.init();
 	})
 }
 

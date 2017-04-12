@@ -15,13 +15,13 @@
 			margin: 20px auto;
 		}
 		tr{
-			height: 12px;
+			height: 18px;
 		}
 		th{
-			width: 10px;
+			width: 16px;
 		}
 		.score{
-			width: 350px;
+			width: 100%;
 			margin:0 auto;
 		}
 		.score:after{
@@ -38,21 +38,40 @@
 			text-align: center;
 		}
 		.normal-food{
-			background: green;
-		}
-		.magic-food{
 			background: orange;
 		}
-		.snake-header{
-			background: blue;
-		}
-		.snake-body{
-			background: #ccc;
-		}
-		.red{
+		.magic-food{
 			background: red;
 		}
-		
+		.snake-header{
+			position: relative;
+		}
+		.snake-header:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			width:150%;
+			height: 150%;
+			background: url(./img/header.png)  center/contain no-repeat;
+		}
+		.snake-body{
+			position: relative;
+		}
+		.snake-body:before{
+			position: absolute;
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: #62ba2f  center/contain no-repeat;
+			border:1px solid #888;
+			border-radius: 50%;
+		}
 	</style>
 </head>
 <body>
@@ -74,7 +93,7 @@
 		
 		<div class="ipt">
 			<select id="selectIpt">
-				<option>10*10</option>
+				<option>15*15</option>
 				<option selected="selected">20*20</option>
 				<option>25*25</option>
 			</select>
