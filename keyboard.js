@@ -6,7 +6,6 @@ var keyboardObj=function(){
 keyboardObj.prototype.doKeyDown=function(){
 	var me=this;
 	document.body.addEventListener("keydown",function(e){
-		// me.longPress(e);
 		switch(e.keyCode){
 			case 37:  //left
 				// 蛇身体长于一节时，禁止通过方向键使其向 与原本运动方向相反的方向 运动

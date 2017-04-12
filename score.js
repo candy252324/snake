@@ -1,17 +1,13 @@
 var scoreObj=function(){
-	this.normalNum=0;
-	this.magicNum=0;
-	this.totalScore=0;
-}
-scoreObj.prototype.init=function(){
 	this.normalCt=document.getElementById("normal");
 	this.magicCt=document.getElementById("magic");
 	this.scoreCt=document.getElementById("total-score");
+}
+scoreObj.prototype.init=function(){
 
-	this.normalCt.innerText=this.normalNum;
-	this.magicCt.innerText=this.magicNum;
-	this.scoreCt.innerText=this.totalScore;
-
+	this.normalCt.innerText=this.normalNum=0;
+	this.magicCt.innerText=this.magicNum=0;
+	this.scoreCt.innerText=this.totalScore=0;
 }
 scoreObj.prototype.addScore=function(type){
 	if(type=="normal-food"){
@@ -29,3 +25,4 @@ scoreObj.prototype.drawScore=function(){
 	this.magicCt.innerText=this.magicNum;
 	this.scoreCt.innerText=this.totalScore;
 }
+

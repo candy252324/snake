@@ -2,7 +2,7 @@ var snakeObj=function(){
 	this.row=[];   
 	this.col=[];
 	this.directionNum=0;
-	this.speed=300;
+	this.speed=250;
 }
 snakeObj.prototype.num=1;  //初始状态蛇只有一节身体
 snakeObj.prototype.init=function(){
@@ -61,6 +61,7 @@ snakeObj.prototype.move=function(){
 
 			// 撞到棋盘边缘或撞到自己，则游戏结束
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
+				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -81,7 +82,7 @@ snakeObj.prototype.move=function(){
 				board.boardArr[lastRow][lastCol].available=false;
 				
 				food.generateFoods();
-				score.addScore(collision.collisionType);  //通过吃到的食物类型计算得分
+				score.addScore(collision.collisionType);
 			}
 			
 			snakeSelf.modifyStyle(lastRow,lastCol);	
@@ -95,6 +96,7 @@ snakeObj.prototype.move=function(){
 			snakeSelf.row.unshift(snakeSelf.row[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
+				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -126,6 +128,7 @@ snakeObj.prototype.move=function(){
 			snakeSelf.col.unshift(snakeSelf.col[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
+				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -157,6 +160,7 @@ snakeObj.prototype.move=function(){
 			snakeSelf.row.unshift(snakeSelf.row[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
+				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -175,6 +179,7 @@ snakeObj.prototype.move=function(){
 				
 				food.generateFoods();
 				score.addScore(collision.collisionType);
+
 			}
 			
 			snakeSelf.modifyStyle(lastRow,lastCol);
