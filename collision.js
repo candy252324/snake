@@ -1,33 +1,21 @@
 var collisionObj=function(){
-	this.collisionType=""
+
 }
 
 // 蛇是否与食物发生了碰撞
 collisionObj.prototype.snakeFoodCli=function(){
 	for(var i=0;i<food.num;i++){
 		if(snake.row[0]==food.row[i]&&snake.col[0]==food.col[i]){
-
-			this.collisionType=board.boardArr[food.row[i]][food.col[i]].className; //吃到的食物的class
-
 			food.row.splice(i,1)   //删除与蛇发生了碰撞的食物的坐标
 			food.col.splice(i,1)
 			food.num -=1;
-			return true;   
+			return true;
 		}
 		
 	}
 	for(var i=0;i<food.magicNum;i++){
 		if(snake.row[0]==food.magicRow[i]&&snake.col[0]==food.magicCol[i]){
-
-			// 清除对应定时器
-			var timerName="timer"+food.magicRow[i]+"-"+food.magicCol[i];
-			food.timer[timerName].flag=true;
-			food.clearTimer(timerName);
-            
-			this.collisionType= board.boardArr[food.magicRow[i]][food.magicCol[i]].className;  //吃到的食物的class
-
-			//删除与蛇发生了碰撞的食物的坐标
-			food.magicRow.splice(i,1)   
+			food.magicRow.splice(i,1)   //删除与蛇发生了碰撞的食物的坐标
 			food.magicCol.splice(i,1)
 			food.magicNum -=1;
 			return true;

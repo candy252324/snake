@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>贪吃蛇</title>
 	<style type="text/css">
 		.wrap{
+			width: 500px;
 			margin:20px auto;
 			text-align: center;
 
@@ -15,14 +15,10 @@
 			margin: 20px auto;
 		}
 		tr{
-			height: 18px;
+			height: 12px;
 		}
 		th{
-			width: 16px;
-		}
-		.score{
-			width: 100%;
-			margin:0 auto;
+			width: 10px;
 		}
 		.score:after{
 			content:"";
@@ -38,49 +34,26 @@
 			text-align: center;
 		}
 		.normal-food{
-			background: orange;
+			background: green;
 		}
 		.magic-food{
-			background: red;
+			background: orange;
 		}
 		.snake-header{
-			position: relative;
-		}
-		.snake-header:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			width:150%;
-			height: 150%;
-			background: url(./img/header.png)  center/contain no-repeat;
+			background: blue;
 		}
 		.snake-body{
-			position: relative;
+			background: #ccc;
 		}
-		.snake-body:before{
-			position: absolute;
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: #62ba2f  center/contain no-repeat;
-			border:1px solid #888;
-			border-radius: 50%;
-		}
+		
 	</style>
 </head>
 <body>
-
 	<div class="wrap">
 		<div class="score">
-			<p>普通果实：<span id="normal"></span></p>
-			<p>魔力果实：<span id="magic"></span></p>
-			<p>总得分：<span id="total-score"></span></p>
+			<p>普通果实：<span id="normal">0</span></p>
+			<p>魔力果实：<span id="magic">0</span></p>
+			<p>总得分：<span id="totalScore">0</span></p>
 		</div>
 		<table border="1">
 			<!-- <tr>
@@ -93,7 +66,7 @@
 		
 		<div class="ipt">
 			<select id="selectIpt">
-				<option>15*15</option>
+				<option>2*2</option>
 				<option selected="selected">20*20</option>
 				<option>25*25</option>
 			</select>

@@ -2,7 +2,7 @@ var snakeObj=function(){
 	this.row=[];   
 	this.col=[];
 	this.directionNum=0;
-	this.speed=250;
+	this.speed=300;
 }
 snakeObj.prototype.num=1;  //初始状态蛇只有一节身体
 snakeObj.prototype.init=function(){
@@ -16,8 +16,10 @@ snakeObj.prototype.init=function(){
 		// 保证生成的蛇和食物的位置不同
 		if(board.boardArr[this.row[0]][this.col[0]].available){
 			for(var i=0; i<this.num; i++){
-			
-				board.boardArr[this.row[0]][this.col[0]].className="snake-header";
+				var tr=document.getElementsByTagName("tr")[this.row[0]];
+				th=tr.getElementsByTagName("th")[this.col[0]];
+
+				th.className="snake-header";
 				board.boardArr[this.row[0]][this.col[0]].available=false;
 			}
 			i++;
@@ -61,7 +63,6 @@ snakeObj.prototype.move=function(){
 
 			// 撞到棋盘边缘或撞到自己，则游戏结束
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -76,13 +77,12 @@ snakeObj.prototype.move=function(){
 			// 随机产生魔力果实
 			food.generateMagicFoods();
 
-			// 如果碰到食物，则身体加长、重新产生普通果实、计算得分
+			// 如果碰到食物，则身体加长
 			if(collision.snakeFoodCli()){
 				snakeSelf.addBody(lastRow,lastCol);
 				board.boardArr[lastRow][lastCol].available=false;
 				
 				food.generateFoods();
-				score.addScore(collision.collisionType);
 			}
 			
 			snakeSelf.modifyStyle(lastRow,lastCol);	
@@ -96,7 +96,6 @@ snakeObj.prototype.move=function(){
 			snakeSelf.row.unshift(snakeSelf.row[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -114,7 +113,6 @@ snakeObj.prototype.move=function(){
 				board.boardArr[lastRow][lastCol].available=false;
 				
 				food.generateFoods();
-				score.addScore(collision.collisionType);
 			}
 
 			snakeSelf.modifyStyle(lastRow,lastCol);
@@ -128,7 +126,6 @@ snakeObj.prototype.move=function(){
 			snakeSelf.col.unshift(snakeSelf.col[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -146,7 +143,6 @@ snakeObj.prototype.move=function(){
 				board.boardArr[lastRow][lastCol].available=false;
 				
 				food.generateFoods();
-				score.addScore(collision.collisionType);
 			}
 			
 			snakeSelf.modifyStyle(lastRow,lastCol);	
@@ -160,7 +156,6 @@ snakeObj.prototype.move=function(){
 			snakeSelf.row.unshift(snakeSelf.row[0])
 
 			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				alert("游戏结束！")
 				gameOver();
 				return;
 			}
@@ -178,8 +173,6 @@ snakeObj.prototype.move=function(){
 				board.boardArr[lastRow][lastCol].available=false;
 				
 				food.generateFoods();
-				score.addScore(collision.collisionType);
-
 			}
 			
 			snakeSelf.modifyStyle(lastRow,lastCol);
