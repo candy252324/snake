@@ -1,5 +1,5 @@
 var interval;
-var continueFlag=1;   // 暂停/继续
+var gameStatus;
 document.body.onload=init;
 
 
@@ -7,69 +7,93 @@ function init(){
 	board=new boardObj();
 	board.init();
 
-	//开始游戏
+	score=new scoreObj();
+	score.init();
+
+
+
 	var start=document.getElementById("start");
-	start.addEventListener("click",function(){
-		// if(interval){
-		// 	clearInterval(interval)
-		// }
-		gameStart();
-	})
-
-	// 游戏暂停
 	var pause=document.getElementById("pause");
-	pause.addEventListener("click",function(){
-		if(interval){
-			clearInterval(interval);  //只是停止，并未清除
-			interval=null;  //清除
-		}else{
-			interval=setInterval(snake.move, snake.speed)
-		}
+	var selectIpt=document.getElementById("selectIpt");
 
+	//开始游戏
+	start.addEventListener("click",function(){
+		if(gameStatus=="run"||gameStatus=="pause"){
+			var msg=confirm("游戏尚未结束，是否重新开始？")
+			if(msg){
+				gameOver();
+				score.init();
+			}else{
+				return
+			}
+		}
+		gameStart();
+		
 	})
 
-	// 选择棋盘大小
-	var selectIpt=document.getElementById("selectIpt");
+	// 改变棋盘大小
 	selectIpt.addEventListener("change",function(){
-		clearInterval(interval)
+		if(gameStatus=="run"||gameStatus=="pause"){
+			var msg=confirm("游戏尚未结束，是否更换棋盘？")
+			if(msg){
+				gameOver();
+				score.init();
+			}else{
+				return
+			}
+		}
 		board.init();
 	})
 }
 
 
 function gameStart(){
+	gameStatus="run";
+
 	food=new foodObj();
 	food.init();
+
 	snake=new snakeObj();
 	snake.init();
+
 	collision=new collisionObj();
+	
 	keyboard=new keyboardObj();
 	interval=setInterval(snake.move,snake.speed)
 
-	if(interval){  //只有在int存在，即游戏进行时，keydown事件才有效
+	if(gameStatus=="run"){  //只有游戏进行时，keydown事件才有效
 		keyboard.doKeyDown();
-		keyboard.doKeyUp();;
+		// keyboard.doKeyUp();;
 	}
+	pause.addEventListener("click",pauseOrContinue)  
+	
 }
 
 function gameOver(){
-	alert("游戏结束！")
-	clearInterval(interval)
+	gameStatus="end";
+	board.init();
+	clearInterval(interval)  // 蛇停止运动
+	interval=null;
+	food.pauseAllTimer();  // 魔力果实停止闪烁
+	pause.removeEventListener("click", pauseOrContinue)   //解除 pause按钮的事件绑定
+	
 }
 
-// var int=setInterval(clock,100)
-// function clock(){
-// 	console.log(1)
-// }
 
-// var int=setInterval(clock,500)
-// function clock(){
-// 	console.log(2)
-// }
+function pauseOrContinue(){
+	if(interval){
+		clearInterval(interval); 
+		interval=null; 
+		food.pauseAllTimer();
+		gameStatus="pause";
+	}else{
+		interval=setInterval(snake.move, snake.speed)
+		food.startAllTimer();
+		gameStatus="run";
+	}
+}
 
-// var int=setInterval(clock,500)
-// function clock(){
-// 	console.log(2)
-// }
+document.body.addEventListener("click",function(e){
+	console.log(e.target.available)
+})
 
-// console.log(int)

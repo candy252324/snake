@@ -2,7 +2,7 @@ var snakeObj=function(){
 	this.row=[];   
 	this.col=[];
 	this.directionNum=0;
-	this.speed=300;
+	this.speed=250;
 }
 snakeObj.prototype.num=1;  //初始状态蛇只有一节身体
 snakeObj.prototype.init=function(){
@@ -16,10 +16,8 @@ snakeObj.prototype.init=function(){
 		// 保证生成的蛇和食物的位置不同
 		if(board.boardArr[this.row[0]][this.col[0]].available){
 			for(var i=0; i<this.num; i++){
-				var tr=document.getElementsByTagName("tr")[this.row[0]];
-				th=tr.getElementsByTagName("th")[this.col[0]];
-
-				th.className="snake-header";
+			
+				board.boardArr[this.row[0]][this.col[0]].className="snake-header";
 				board.boardArr[this.row[0]][this.col[0]].available=false;
 			}
 			i++;
@@ -28,7 +26,7 @@ snakeObj.prototype.init=function(){
 
 	this.direction();
 
-	snakeSelf=this;
+	snakeSelf=this;  //move在setInterval调用，需要先保存this
 }
 
 snakeObj.prototype.direction=function(){
@@ -53,145 +51,102 @@ snakeObj.prototype.direction=function(){
 }
 
 snakeObj.prototype.move=function(){
-	
+	var oldHeader;
+	var rotateDeg;   //发生转弯时蛇头该旋转的角度
+
 	switch (snakeSelf.directionNum ){
-		case 0:
-			// move top
+		case 0:  // move top
+
+			oldHeader=board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]]
+
 			// 添加头
 			snakeSelf.row.unshift(parseInt(snakeSelf.row[0])-parseInt(1))
 			snakeSelf.col.unshift(snakeSelf.col[0])
-
-			// 撞到棋盘边缘或撞到自己，则游戏结束
-			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				gameOver();
-				return;
-			}
-
-			// 去掉尾
-			lastRow=snakeSelf.row.pop(snakeSelf.row[snakeSelf.num])
-			lastCol=snakeSelf.col.pop(snakeSelf.col[snakeSelf.num])
-
-			board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]].available=false;
-			board.boardArr[lastRow][lastCol].available=true;
-
-			// 随机产生魔力果实
-			food.generateMagicFoods();
-
-			// 如果碰到食物，则身体加长
-			if(collision.snakeFoodCli()){
-				snakeSelf.addBody(lastRow,lastCol);
-				board.boardArr[lastRow][lastCol].available=false;
-				
-				food.generateFoods();
-			}
-			
-			snakeSelf.modifyStyle(lastRow,lastCol);	
-
+			rotateDeg=180;
 			break;
 
-		case 1:
-			// move right
-			
+		case 1:   // move right
+			oldHeader=board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]]
+
 			snakeSelf.col.unshift(parseInt(snakeSelf.col[0])+parseInt(1))
 			snakeSelf.row.unshift(snakeSelf.row[0])
-
-			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				gameOver();
-				return;
-			}
-
-			lastRow=snakeSelf.row.pop(snakeSelf.row[snakeSelf.num])
-			lastCol=snakeSelf.col.pop(snakeSelf.col[snakeSelf.num])
-
-			board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]].available=false;
-			board.boardArr[lastRow][lastCol].available=true;
-
-			food.generateMagicFoods();
-
-			if(collision.snakeFoodCli()){
-				snakeSelf.addBody(lastRow,lastCol);
-				board.boardArr[lastRow][lastCol].available=false;
-				
-				food.generateFoods();
-			}
-
-			snakeSelf.modifyStyle(lastRow,lastCol);
-
+			rotateDeg=-90;
 			break;
 
-		case 2:
-			// move bottom
-		
+		case 2:  // move bottom
+			oldHeader=board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]]
+
 			snakeSelf.row.unshift(parseInt(snakeSelf.row[0])+parseInt(1))
 			snakeSelf.col.unshift(snakeSelf.col[0])
-
-			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				gameOver();
-				return;
-			}
-
-			lastRow=snakeSelf.row.pop(snakeSelf.row[snakeSelf.num])
-			lastCol=snakeSelf.col.pop(snakeSelf.col[snakeSelf.num])
-
-			board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]].available=false;
-			board.boardArr[lastRow][lastCol].available=true;
-
-			food.generateMagicFoods();
-
-			if(collision.snakeFoodCli()){
-				snakeSelf.addBody(lastRow,lastCol);
-				board.boardArr[lastRow][lastCol].available=false;
-				
-				food.generateFoods();
-			}
-			
-			snakeSelf.modifyStyle(lastRow,lastCol);	
-
+			rotateDeg=0;
 			break;
 
-		case 3:
-			// move left
-			
+		case 3:  // move left
+			oldHeader=board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]]
+
 			snakeSelf.col.unshift(parseInt(snakeSelf.col[0])-parseInt(1))
 			snakeSelf.row.unshift(snakeSelf.row[0])
-
-			if(collision.snakeWallCli()||collision.snakeSelfCli()){
-				gameOver();
-				return;
-			}
-
-			lastRow=snakeSelf.row.pop(snakeSelf.row[snakeSelf.num])
-			lastCol=snakeSelf.col.pop(snakeSelf.col[snakeSelf.num])
-
-			board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]].available=false;
-			board.boardArr[lastRow][lastCol].available=true;
-
-			food.generateMagicFoods();
-
-			if(collision.snakeFoodCli()){
-				snakeSelf.addBody(lastRow,lastCol);
-				board.boardArr[lastRow][lastCol].available=false;
-				
-				food.generateFoods();
-			}
-			
-			snakeSelf.modifyStyle(lastRow,lastCol);
-
+			rotateDeg=90;
 			break;
 	}
+
+	
+	// 撞到棋盘边缘或撞到自己，则游戏结束
+	if(collision.snakeWallCli()||collision.snakeSelfCli()){
+		alert("游戏结束！")
+		gameOver();
+		return;
+	}
+
+	var lastRow=snakeSelf.row.pop(snakeSelf.row[snakeSelf.num])
+	var lastCol=snakeSelf.col.pop(snakeSelf.col[snakeSelf.num])
+
+	board.boardArr[snakeSelf.row[0]][snakeSelf.col[0]].available=false;
+	board.boardArr[lastRow][lastCol].available=true;
+
+	food.generateMagicFoods();
+	// 如果碰到食物，则身体加长、重新产生普通果实、计算得分
+	if(collision.snakeFoodCli()){
+		snakeSelf.addBody(lastRow,lastCol);
+		board.boardArr[lastRow][lastCol].available=false;
+		
+		food.generateFoods();
+		score.addScore(collision.collisionType);
+	}
+
+	snakeSelf.modifyStyle(oldHeader,lastRow,lastCol);
+	snakeSelf.rotateHeader(rotateDeg);
+
 }
 
-snakeObj.prototype.modifyStyle=function(lastRow,lastCol){
+snakeObj.prototype.rotateHeader=function(deg){
+	var header=document.getElementsByClassName("snake-header")[0];
+	header.setAttribute("style","transform:rotate("+deg+"deg)")
+	header.setAttribute("style","-o-transform:rotate("+deg+"deg)")
+	header.setAttribute("style","-ms-transform:rotate("+deg+"deg)")
+	header.setAttribute("style","-moz-transform:rotate("+deg+"deg)")
+	header.setAttribute("style","-webkit-transform:rotate("+deg+"deg)")
+}
 
+snakeObj.prototype.modifyStyle=function(oldHeader,lastRow,lastCol){
+	// 去除旧头的旋转角度
+	oldHeader.style.transform="rotate(0deg)"
+	oldHeader.style.oTransform="rotate(0deg)"
+	oldHeader.style.msTransform="rotate(0deg)"
+	oldHeader.style.mozTransform="rotate(0deg)"
+	oldHeader.style.webkitTransform="rotate(0deg)"
+	
+	// 新头新尾
+	board.boardArr[this.row[0]][this.col[0]].className="snake-header";
 	board.boardArr[lastRow][lastCol].className="";
 
-	board.boardArr[this.row[0]][this.col[0]].className="snake-header";
 	if(this.num>1){
 		for(var i=1; i<this.num; i++){
 			board.boardArr[this.row[i]][this.col[i]].className="snake-body";
 		}
 	}
 }
+
 snakeObj.prototype.addBody=function(lastRow,lastCol){
 	this.row.push(lastRow);
 	this.col.push(lastCol);

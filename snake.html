@@ -2,23 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>贪吃蛇</title>
 	<style type="text/css">
+		html,body{
+			margin:0;
+			padding: 0;
+		}
 		.wrap{
-			width: 500px;
 			margin:20px auto;
 			text-align: center;
 
 		}
+		.table-ct{
+			margin: 0 auto;
+			padding: 5px;
+			/*background: url(./img/grassland.png)  0 0/cover;*/
+		}
 		table{
+			margin: 0 auto;
 			border-collapse: collapse;
-			margin: 20px auto;
+			border:1px solid #63a340;
+			background: url(./img/grassland.png)  0 0/cover;
+			
 		}
 		tr{
-			height: 12px;
+			height: 18px;
 		}
 		th{
-			width: 10px;
+			width: 16px;
+		}
+		.score{
+			width: 100%;
+			margin:0 auto;
 		}
 		.score:after{
 			content:"";
@@ -33,40 +49,138 @@
 		.ipt{
 			text-align: center;
 		}
-		.normal-food{
-			background: green;
+		.apple{
+			position: relative;
+		}
+		.apple:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: url(./img/apple.png)  center/contain no-repeat;
+		}
+		.banana{
+			position: relative;
+		}
+		.banana:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: url(./img/banana.png)  center/contain no-repeat;
+		}
+		.strawberry{
+			position: relative;
+		}
+		.strawberry:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: url(./img/strawberry.png)  center/contain no-repeat;
 		}
 		.magic-food{
-			background: orange;
+			position: relative;
+		}
+		.magic-food:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: url(./img/money.png)  center/contain no-repeat;
 		}
 		.snake-header{
-			background: blue;
+			position: relative;
+		}
+		.snake-header:before{
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:150%;
+			height: 150%;
+			background: url(./img/header.png)  center/contain no-repeat;
 		}
 		.snake-body{
-			background: #ccc;
+			/*position: relative;*/
+			background: #62ba2f;
+			border-radius: 50%;
 		}
-		
+		/*.snake-body:before{
+			position: absolute;
+			content: "";
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			width:120%;
+			height: 120%;
+			background: #62ba2f  center/contain no-repeat;
+			border:1px solid #888;
+			border-radius: 50%;
+		}*/
 	</style>
 </head>
 <body>
+
 	<div class="wrap">
 		<div class="score">
-			<p>普通果实：<span id="normal">0</span></p>
-			<p>魔力果实：<span id="magic">0</span></p>
-			<p>总得分：<span id="totalScore">0</span></p>
+			<p>普通果实：<span id="normal"></span></p>
+			<p>魔力果实：<span id="magic"></span></p>
+			<p>总得分：<span id="total-score"></span></p>
 		</div>
-		<table border="1">
+		<div class="table-ct">
+			<table border="1">
 			<!-- <tr>
 				<th></th>
 				<th></th>
 				<th></th>
 				<th></th>
 			</tr> -->
-		</table>
+			</table>
+		</div>
+		
 		
 		<div class="ipt">
 			<select id="selectIpt">
-				<option>2*2</option>
+				<option>15*15</option>
 				<option selected="selected">20*20</option>
 				<option>25*25</option>
 			</select>
