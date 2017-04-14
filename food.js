@@ -79,7 +79,7 @@ foodObj.prototype.magicFoodDispear=function(i,row,col){
 	
 	var me=this;
 
-	var timerName="timer"+row+"-"+col;
+	var timerName="timer"+row+"-"+col;  //以魔力果实坐标的位置 命名对应定时器
 	var TimerArr=me.timer[timerName]=[];   //将me.timer[timerName]定义成数组对象，便可以在上面绑定clock属性（需要重复调用的函数），disTime属性（调用的延迟时间）
 	TimerArr.disTime=2000;
 	TimerArr.clock=function(){
@@ -103,17 +103,14 @@ foodObj.prototype.magicFoodDispear=function(i,row,col){
 					me.timer[timerName].push(setTimeout(TimerArr.clock, TimerArr.disTime));
 
 					board.boardArr[row][col].className="magic-food";
-					TimerArr.disTime *=.8;
+					TimerArr.disTime *=.6;
 
 				}
 			},80))
 		}
 	}
 
-	//以魔力果实坐标的位置 命名对应定时器
-	
 	TimerArr.push(setTimeout(TimerArr.clock, TimerArr.disTime+2000));
-
 }
 
 

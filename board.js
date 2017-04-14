@@ -16,7 +16,12 @@ boardObj.prototype.init=function(){
 }
 
 boardObj.prototype.drawBoard=function(){
-	var table=document.getElementsByTagName("table")[0];
+	var table=document.getElementsByTagName("table")[0],
+	    tableW=screen.availWidth,
+	    tableH=tableW;
+	table.style.width=tableW+"px";
+	table.style.height=tableH+"px";
+
 	table.innerHTML = '';
 	this.boardArr=[];
 

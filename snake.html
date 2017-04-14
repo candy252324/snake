@@ -4,167 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>贪吃蛇</title>
-	<style type="text/css">
-		html,body{
-			margin:0;
-			padding: 0;
-		}
-		.wrap{
-			margin:20px auto;
-			text-align: center;
-
-		}
-		.table-ct{
-			margin: 0 auto;
-			padding: 5px;
-			/*background: url(./img/grassland.png)  0 0/cover;*/
-		}
-		table{
-			margin: 0 auto;
-			border-collapse: collapse;
-			border:1px solid #63a340;
-			background: url(./img/grassland.png)  0 0/cover;
-			
-		}
-		tr{
-			height: 18px;
-		}
-		th{
-			width: 16px;
-		}
-		.score{
-			width: 100%;
-			margin:0 auto;
-		}
-		.score:after{
-			content:"";
-			display: block;
-			clear: both;
-		}
-		.score p{
-			float: left;
-			width: 33.3%;
-			margin:0;
-		}
-		.ipt{
-			text-align: center;
-		}
-		.apple{
-			position: relative;
-		}
-		.apple:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: url(./img/apple.png)  center/contain no-repeat;
-		}
-		.banana{
-			position: relative;
-		}
-		.banana:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: url(./img/banana.png)  center/contain no-repeat;
-		}
-		.strawberry{
-			position: relative;
-		}
-		.strawberry:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: url(./img/strawberry.png)  center/contain no-repeat;
-		}
-		.magic-food{
-			position: relative;
-		}
-		.magic-food:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: url(./img/money.png)  center/contain no-repeat;
-		}
-		.snake-header{
-			position: relative;
-		}
-		.snake-header:before{
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:150%;
-			height: 150%;
-			background: url(./img/header.png)  center/contain no-repeat;
-		}
-		.snake-body{
-			/*position: relative;*/
-			background: #62ba2f;
-			border-radius: 50%;
-		}
-		/*.snake-body:before{
-			position: absolute;
-			content: "";
-			position: absolute;
-			left: 50%;
-			top:50%;
-			transform: translate(-50%, -50%);
-			-o-transform: translate(-50%, -50%);
-			-ms-transform: translate(-50%, -50%);
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
-			width:120%;
-			height: 120%;
-			background: #62ba2f  center/contain no-repeat;
-			border:1px solid #888;
-			border-radius: 50%;
-		}*/
-	</style>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./iconfont/iconfont.css">
 </head>
 <body>
 
 	<div class="wrap">
-		<div class="score">
-			<p>普通果实：<span id="normal"></span></p>
-			<p>魔力果实：<span id="magic"></span></p>
-			<p>总得分：<span id="total-score"></span></p>
+		<div class="topbar clearfix">
+			<div class="score clearfix">
+				<p>普通果实：<span id="normal"></span></p>
+				<p>魔力果实：<span id="magic"></span></p>
+				<p>总得分：<span id="total-score"></span></p>
+			</div>
+			<div class="set clearfix">
+				<i class="iconfont">&#xe61f;</i>
+				<ul class="set-content">
+					<li>棋盘大小</li>
+					<li>游戏规则</li>
+				</ul>
+			</div>
 		</div>
 		<div class="table-ct">
 			<table border="1">
@@ -178,7 +36,7 @@
 		</div>
 		
 		
-		<div class="ipt">
+		<div class="selectBtn">
 			<select id="selectIpt">
 				<option>15*15</option>
 				<option selected="selected">20*20</option>
@@ -186,7 +44,14 @@
 			</select>
 			<button id="start">开始游戏</button>
 			<button id="pause">暂停 / 继续</button>
-			<!-- <button id="restart">重新开始</button> -->
+		</div>
+
+		<div class="directionBtn">
+			<div class="top"><img src="./img/top.png"></div>
+			<div class="left"><img src="./img/left.png"></div>
+			<div class="right"><img src="./img/right.png"></div>
+			<div class="bottom"><img src="./img/bottom.png"></div>
+
 		</div>
 	</div>
 	
