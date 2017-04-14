@@ -1,7 +1,7 @@
 html,body{
 	margin:0;
 	padding: 0;
-	font-size: 30px;
+	font-size: 20px;
 }
 ul,li{
 	margin:0;
@@ -34,11 +34,11 @@ table{
 }
 button{
 	margin:10px;
-	padding:10px;
+	padding:5px;
 	background: #f7bb25;
 	border:2px solid #e36406;
 	color:#fff;
-	font-size: 30px;
+	font-size: 20px;
 	outline: none;
 	border-radius: 10px;
 }
@@ -64,7 +64,7 @@ button{
 	width: 10%;
 	box-sizing: border-box;
 }
-.set i{
+i.set-btn {
 	float: right;
 	font-size: 30px;
 	cursor: pointer;
@@ -74,14 +74,33 @@ ul.set-content{
 	top:38px;
 	right: 0;
 	width: 120px;
-	padding:10px 5px;
+	padding:10px 0;
 	background: #fff;
 	border:1px solid #f6f7f8;
-	font-size: 24px;
-	/*display: none;*/
+	font-size: 18px;
+	display: none;
+}
+ul.set-content.active{
+	display: block;
 }
 ul.set-content li{
 	text-align: center;
+	cursor:pointer;
+}
+ul.set-content li:hover{
+	background: #eee;
+}
+.board-size{
+	position: relative;
+}
+ul.set-content .board-size:hover #selectIpt{
+	display: block;
+}
+#selectIpt{
+	position: absolute;
+	top:0;
+	right: 100%;
+	display: none;
 }
 .selectBtn{
 	text-align: center;
@@ -193,13 +212,16 @@ ul.set-content li{
 	border:1px solid #888;
 	border-radius: 50%;
 }*/
-.directionBtn{
+.direction-btn{
 	display: none;
+}
+.direction-btn div{
+	cursor:pointer;
 }
 
 @media(max-width: 992px){
 	
-	.directionBtn{
+	.direction-btn{
 		width: 232px;
 		height: 215px;
 		margin:0 auto;

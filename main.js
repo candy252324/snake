@@ -59,10 +59,12 @@ function gameStart(){
 	collision=new collisionObj();
 	
 	keyboard=new keyboardObj();
+	mouse=new mouseObj();
 	interval=setInterval(snake.move,snake.speed)
 
 	if(gameStatus=="run"){  //只有游戏进行时，keydown事件才有效
 		keyboard.doKeyDown();
+		mouse.doClick();
 		// keyboard.doKeyUp();;
 	}
 	pause.addEventListener("click",pauseOrContinue)  
@@ -92,4 +94,12 @@ function pauseOrContinue(){
 		gameStatus="run";
 	}
 }
-
+var setBtn=document.getElementsByClassName("set-btn")[0],
+	setContent=document.getElementsByClassName("set-content")[0];
+setBtn.addEventListener("click",function(){
+	if(hasClass(setContent,"active")){
+		removeClass(setContent,"active")
+	}else{
+		addClass(setContent,"active")
+	}
+})

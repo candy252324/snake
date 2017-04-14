@@ -17,9 +17,17 @@
 				<p>总得分：<span id="total-score"></span></p>
 			</div>
 			<div class="set clearfix">
-				<i class="iconfont">&#xe61f;</i>
+				<i class="set-btn iconfont">&#xe61f;</i>
 				<ul class="set-content">
-					<li>棋盘大小</li>
+					<li class="board-size">
+						棋盘大小
+						<select id="selectIpt">
+							<option>15*15</option>
+							<option selected="selected">20*20</option>
+							<option>25*25</option>
+						</select>
+					</li>
+						
 					<li>游戏规则</li>
 				</ul>
 			</div>
@@ -37,16 +45,16 @@
 		
 		
 		<div class="selectBtn">
-			<select id="selectIpt">
+			<!-- <select id="selectIpt">
 				<option>15*15</option>
 				<option selected="selected">20*20</option>
 				<option>25*25</option>
-			</select>
+			</select> -->
 			<button id="start">开始游戏</button>
 			<button id="pause">暂停 / 继续</button>
 		</div>
 
-		<div class="directionBtn">
+		<div class="direction-btn">
 			<div class="top"><img src="./img/top.png"></div>
 			<div class="left"><img src="./img/left.png"></div>
 			<div class="right"><img src="./img/right.png"></div>
@@ -65,6 +73,8 @@
 	<script type="text/javascript" src="./collision.js"></script>
 	<script type="text/javascript" src="./score.js"></script>
 	<script type="text/javascript" src="./keyboard.js"></script>
+	<script type="text/javascript" src="./mouse.js"></script>
+
 
 
 
