@@ -1,7 +1,7 @@
 html,body{
 	margin:0;
 	padding: 0;
-	font-size: 20px;
+	font-size: 18px;
 }
 ul,li{
 	margin:0;
@@ -16,7 +16,7 @@ li{
 	clear: both;
 }
 .wrap{
-	margin:20px auto;
+	margin:5px auto;
 	max-width: 600px;
 }
 .table-ct{
@@ -34,11 +34,11 @@ table{
 }
 button{
 	margin:10px;
-	padding:5px;
+	padding:5px 10px;
 	background: #f7bb25;
 	border:2px solid #e36406;
 	color:#fff;
-	font-size: 20px;
+	font-size: 18px;
 	outline: none;
 	border-radius: 10px;
 }
@@ -78,6 +78,7 @@ ul.set-content{
 	background: #fff;
 	border:1px solid #f6f7f8;
 	font-size: 18px;
+	z-index: 100;
 	display: none;
 }
 ul.set-content.active{
@@ -222,29 +223,32 @@ ul.set-content .board-size:hover #selectIpt{
 @media(max-width: 992px){
 	
 	.direction-btn{
-		width: 232px;
+		width: 181px;
 		height: 215px;
 		margin:0 auto;
 		display: block;
 	}
 	.top{
-		width: 73px;
-		height: 66px;
 		margin:0 auto;
+		text-align: center;
 	}
 	.bottom{
-		width: 73px;
-		height: 66px;
 		margin:73px auto 0;
+		text-align: center;
 	}
+	.top img, .bottom img{
+		width: 73px;
+		height: 50px;
+	}
+	
 	.left{
 		float: left;
-		width: 66px;
-		height: 73px;
 	}
 	.right{
 		float: right;
-		width: 66px;
+	}
+	.left img, .right img{
+		width: 50px;
 		height: 73px;
 	}
 }
