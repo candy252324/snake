@@ -60,7 +60,6 @@ foodObj.prototype.generateMagicFoods=function(){
 				board.boardArr[row][col].className="magic-food";
 				board.boardArr[row][col].available=false;
 
-				// 果实产生 若干秒（大于3秒） 后，将执行magicFoodDispear()函数
 				// 因为定时器延迟执行后，i,row,col值会被覆盖，立即执行函数是为了将每个i,row,col值保存下来
 				(function(i,row,col){
 					me.magicFoodDispear(i,row,col)

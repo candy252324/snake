@@ -173,3 +173,24 @@ function sleep(numberMillis) {
     return; 
     } 
 }
+
+//获取元素某属性值  getStyle（ele, "paddingLeft"）
+var getStyle = function(dom, attr){
+  return dom.currentStyle ? dom.currentStyle[attr] : getComputedStyle(dom, false)[attr];
+}
+
+function slideUp(ele,time){
+    if(time){
+        ele.style.transition='height '+time+'ms';
+    }
+    ele.style.overflow='hidden';
+    ele.style.height='0';
+}
+
+function slideDown(ele,eleH,time){
+    if(time){
+        ele.style.transition='height '+time+'ms';
+    }
+    ele.style.overflow='visible';
+    ele.style.height=eleH+"px";
+}

@@ -18,18 +18,34 @@
 			</div>
 			<div class="set clearfix">
 				<i class="set-btn iconfont">&#xe61f;</i>
-				<ul class="set-content">
-					<li class="board-size">
-						棋盘大小
-						<select id="selectIpt">
-							<option>15*15</option>
-							<option selected="selected">20*20</option>
-							<option>25*25</option>
-						</select>
-					</li>
-						
-					<li>游戏规则</li>
-				</ul>
+				<div class="set-container">
+					<ul class="set-content">
+						<li class="board-size">
+							棋盘大小
+							<div class="select">
+								<select id="selectIpt">
+									<option>15*15</option>
+									<option selected="selected">20*20</option>
+									<option>25*25</option>
+								</select>
+							</div>
+							
+						</li>
+							
+						<li class="rule-ct">游戏规则
+							<div class="rule">
+								<ul>
+									<li>蛇头部不得触碰到自身身体，也不得触碰到墙壁，否则游戏结束</li>
+									<li>得分越高，蛇运动越快</li>
+									<li>长按方向键，蛇将加速运动</li>
+									<li>吃到魔力果实将双倍得分</li>
+									<li>魔力果实随机产生，一定时间内没吃到则将消失</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
 			</div>
 		</div>
 		<div class="table-ct">
@@ -64,22 +80,14 @@
 	</div>
 	
 	
-
-	<script type="text/javascript" src="./main.js"></script>
 	<script type="text/javascript" src="./commonFunctions.js"></script>
+	<script type="text/javascript" src="./main.js"></script>
 	<script type="text/javascript" src="./board.js"></script>
 	<script type="text/javascript" src="./food.js"></script>
 	<script type="text/javascript" src="./snake.js"></script>
 	<script type="text/javascript" src="./collision.js"></script>
 	<script type="text/javascript" src="./score.js"></script>
 	<script type="text/javascript" src="./keyboard.js"></script>
-	<script type="text/javascript" src="./mouse.js"></script>
 
-
-
-
-
-
-	
 </body>
 </html>

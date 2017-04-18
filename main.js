@@ -59,12 +59,10 @@ function gameStart(){
 	collision=new collisionObj();
 	
 	keyboard=new keyboardObj();
-	mouse=new mouseObj();
 	interval=setInterval(snake.move,snake.speed)
 
 	if(gameStatus=="run"){  //只有游戏进行时，keydown事件才有效
 		keyboard.doKeyDown();
-		mouse.doClick();
 		// keyboard.doKeyUp();;
 	}
 	pause.addEventListener("click",pauseOrContinue)  
@@ -94,12 +92,59 @@ function pauseOrContinue(){
 		gameStatus="run";
 	}
 }
-var setBtn=document.getElementsByClassName("set-btn")[0],
-	setContent=document.getElementsByClassName("set-content")[0];
-setBtn.addEventListener("click",function(){
-	if(hasClass(setContent,"active")){
-		removeClass(setContent,"active")
-	}else{
-		addClass(setContent,"active")
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var setBtn=document.getElementsByClassName("set")[0],
+	setCt=document.getElementsByClassName("set-container")[0],
+
+	boardSizeCt=document.getElementsByClassName("board-size")[0],
+	select=document.getElementsByClassName("select")[0],
+
+	ruleCt=document.getElementsByClassName("rule-ct")[0],
+	rule=document.getElementsByClassName("rule")[0];
+
+var setCtH=setCt.offsetHeight;
+slideUp(setCt);
+
+setBtn.addEventListener("mouseenter",function(){
+	slideDown(setCt,setCtH,200)
+})
+boardSizeCt.addEventListener("mouseenter",function(){
+	select.style.display="block"
+})
+boardSizeCt.addEventListener("mouseleave",function(){
+	select.style.display="none"
+})
+
+ruleCt.addEventListener("mouseenter",function(){
+	rule.style.display="block"
+})
+ruleCt.addEventListener("mouseleave",function(){
+	rule.style.display="none"
+})
+
+setBtn.addEventListener("mouseleave",function(){
+	slideUp(setCt,200)
+})
+setCt.addEventListener("mouseleave",function(){
+	slideUp(setCt,200)
 })
