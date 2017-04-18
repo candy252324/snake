@@ -7,7 +7,6 @@ collisionObj.prototype.snakeFoodCli=function(){
 	for(var i=0;i<food.num;i++){
 		if(snake.row[0]==food.row[i]&&snake.col[0]==food.col[i]){
 
-			// this.collisionType=board.boardArr[food.row[i]][food.col[i]].className; //吃到的食物的class
 			this.collisionType="normal-food";   //确定类型，用于计算分数
 
 			food.row.splice(i,1)   //删除与蛇发生了碰撞的食物的坐标
@@ -25,7 +24,6 @@ collisionObj.prototype.snakeFoodCli=function(){
 			food.timer[timerName].flag=true;
 			food.clearTimer(timerName);
             
-			// this.collisionType= board.boardArr[food.magicRow[i]][food.magicCol[i]].className;  //吃到的食物的class
 			this.collisionType="magic-food";
 
 			//删除与蛇发生了碰撞的食物的坐标

@@ -2,8 +2,9 @@ var snakeObj=function(){
 	this.row=[];   
 	this.col=[];
 	this.directionNum=0;
-	this.speed=250;
+	this.baseSpeed=250;
 }
+
 snakeObj.prototype.num=1;  //初始状态蛇只有一节身体
 snakeObj.prototype.init=function(){
 
@@ -53,7 +54,6 @@ snakeObj.prototype.direction=function(){
 snakeObj.prototype.move=function(){
 	var oldHeader;
 	var rotateDeg;   //发生转弯时蛇头该旋转的角度
-
 	switch (snakeSelf.directionNum ){
 		case 0:  // move top
 
@@ -93,7 +93,6 @@ snakeObj.prototype.move=function(){
 	
 	// 撞到棋盘边缘或撞到自己，则游戏结束
 	if(collision.snakeWallCli()||collision.snakeSelfCli()){
-		alert("游戏结束！")
 		gameOver();
 		return;
 	}

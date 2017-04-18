@@ -6,7 +6,6 @@ var keyboardObj=function(){
 keyboardObj.prototype.doKeyDown=function(){
 	var me=this;
 	document.body.addEventListener("keydown",function(e){
-
 		switch(e.keyCode){
 			case 37:  //left
 				// 蛇身体长于一节时，禁止通过方向键使其向 与原本运动方向相反的方向 运动
@@ -44,48 +43,11 @@ keyboardObj.prototype.doKeyDown=function(){
 				}
 				snake.directionNum=2;
 				break;
-
 		}
-		// console.log(1111)
-		// clearInterval(interval)
-		// interval=setInterval(snake.move,100)
+		beta=0.3;
 	})
 
-	// document.body.addEventListener("keyup",function(e){
-	// 	clearInterval(interval)
-	// 	interval=setInterval(snake.move,snake.speed)
-	// })
-	
-	
+	document.body.addEventListener("keyup",function(e){
+		beta=0;
+	})
 }
-// keyboardObj.prototype.doKeyUp=function(){
-// 	var me=this;
-// 	document.body.addEventListener("keyup",function(e){
-// 		if(e.keyCode==37||e.keyCode==38||e.keyCode==39||e.keyCode==40){
-		
-// 			console.log(2)
-// 			clearInterval(int)
-// 			interval=setInterval(snake.move,300)
-// 		}
-		
-// 	})
-// }
-
-// var int;
-// var timeout ;  
-   
-// $("#mydiv").mousedown(function() {  
-//     timeout = setTimeout(function() {  
-//         $("#mydiv").text("in");  
-//     }, 2000);  
-// });  
-   
-// $("#mydiv").mouseup(function() {  
-//     clearTimeout(timeout);  
-//     $("#mydiv").text("out");  
-// });  
-  
-// $("#mydiv").mouseout(function() {  
-//     clearTimeout(timeout);  
-//     $("#mydiv").text("out");  
-// });  

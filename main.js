@@ -1,5 +1,6 @@
-var interval;
+var mainTimeout=[];
 var gameStatus;
+var beta;
 document.body.onload=init;
 
 
@@ -59,7 +60,8 @@ function gameStart(){
 	collision=new collisionObj();
 	
 	keyboard=new keyboardObj();
-	interval=setInterval(snake.move,snake.speed)
+	beta=1;
+	mainClock()  // 控制蛇运动的主要函数
 
 	if(gameStatus=="run"){  //只有游戏进行时，keydown事件才有效
 		keyboard.doKeyDown();
@@ -70,32 +72,59 @@ function gameStart(){
 }
 
 function gameOver(){
-	gameStatus="end";
-	board.init();
-	clearInterval(interval)  // 蛇停止运动
-	interval=null;
+	alert("游戏结束！")
+	clearMainClock()   //蛇停止运动
 	food.pauseAllTimer();  // 魔力果实停止闪烁
-	pause.removeEventListener("click", pauseOrContinue)   //解除 pause按钮的事件绑定
-	
+	pause.removeEventListener("click", pauseOrContinue);  //解除 pause按钮的事件绑定
+	board.init();
+	score.init();
+	gameStatus="end";
 }
 
-
 function pauseOrContinue(){
-	if(interval){
-		clearInterval(interval); 
-		interval=null; 
-		food.pauseAllTimer();
+	if(gameStatus=="run"){
 		gameStatus="pause";
-	}else{
-		interval=setInterval(snake.move, snake.speed)
-		food.startAllTimer();
+		clearMainClock()
+		food.pauseAllTimer();
+		
+	}else if(gameStatus=="pause"){
 		gameStatus="run";
+		mainClock()
+		food.startAllTimer();
+		
 	}
 }
 
+// 控制蛇运动的主要函数
+var beta;
+function mainClock(){
+	if(gameStatus!="end"&&gameStatus!="pause"){
+		clearMainClock()
+		var alpha=1;
+		if(score.totalScore>200&&score.totalScore<=500){
+			alpha=0.8;
+		}else if(score.totalScore>500&&score.totalScore<=800){
+			alpha=0.6;
+		}else if(score.totalScore>800){
+			alpha=0.5;
+		}
+		if(!beta){
+			snake.speed=alpha*snake.baseSpeed;
+		}else{
+			snake.speed=beta*snake.baseSpeed;
+		}
+		console.log(snake.speed)
+		snake.move();
+		mainTimeout.push(setTimeout(mainClock,snake.speed))
+	}
+}
 
-
-
+function clearMainClock(){
+	for(var i=0; i<mainTimeout.length; i++){
+		clearTimeout(mainTimeout[i]);
+		mainTimeout[i]=null;
+	}
+}
 
 
 
